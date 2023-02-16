@@ -1,0 +1,13 @@
+.container{
+    width: 1000px;
+    margin-top:3rem;
+  
+}
+body{
+    background-color: darkcyan;
+}
+.signuptextcolor{
+    color:white;
+    font-size: large;
+    font-weight:2px;
+}

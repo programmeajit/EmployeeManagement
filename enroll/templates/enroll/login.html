@@ -1,0 +1,29 @@
+{% extends 'enroll/base.html' %}
+{% load static %}
+{% block title %}
+    Login
+{% endblock title %}
+
+{% block content %}
+
+<div class="mx-auto">
+   
+    <form action="" method="POST" novalidate>
+        <h2 class="alert alert-warning my-3">Login Page</h2>
+        {% csrf_token %}
+        {% for fm in form %}
+            <div class="form-group">
+                {{fm.label_tag}} {{fm}} <span class="text-warning"> {{fm.errors|striptags}} </span>
+            </div>    
+        {% endfor %}
+        
+        <input type="submit" value="Login" class="btn btn-primary  my-3">
+          
+    
+       
+         
+    </form>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,68 @@
+{% extends 'enroll/base.html' %}
+{% load static %}
+{% block title %}
+    Employee
+{% endblock title %}
+
+{% block content %}
+<div class="row">
+
+    <div class="col-sm-4">
+        <h4 class=" text-center alert alert-primary">Add new Employee</h4>
+        <form action=""  method="POST" class="text-white">
+            {% csrf_token %}
+                {{form}}
+            <input type="submit" value="Add" class="btn btn-primary mt-3 px-3">
+        </form>
+    </div>
+
+    <div class="col-sm-8">
+        <h4 class=" text-center alert alert-primary">Show Employee Information</h4>
+        {% if empDetails %}
+        <table class="table table-hover">
+            <thead>
+              <tr class="text-warning " style="font-size:1.3rem;">
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col" class="text-center">Email</th>
+                <th scope="col">Department</th>
+                <th scope="col">Join Date</th>
+                
+                <th scope="col">Action</th>
+                
+                
+              </tr>
+            </thead>
+            <tbody>
+            {% if request.user.is_authenticated %}
+                {% for emp in empDetails %}
+                  <tr class="text-white">
+                    <td>{{emp.empId}}</td>
+                    <td>{{emp.empName}}</td>
+                    <td>{{emp.email}}</td>
+                    <td>{{emp.department}}</td>
+                    <td>{{emp.joindate}}</td>
+                    
+                  <td>
+                        <a href="{% url 'updatedata' emp.id %}" class="btn btn-warning btn-sm ">Update</a>
+                        <form action="{% url 'deletedata' emp.id %}" method="POST" class="d-inline">
+                            {% csrf_token %}
+                        
+                        <input type="submit" value="Delete"  class="btn btn-danger btn-sm">
+                        </form>
+
+                        
+                    </td>   
+                  </tr>
+                {% endfor %}
+              {% endif %}
+            </tbody>
+          </table>
+        {% endif %}
+    </div>
+
+
+</div>
+
+
+{% endblock content %}
